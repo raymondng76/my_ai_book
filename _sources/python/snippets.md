@@ -1,4 +1,4 @@
-# My AI Book
+# Code Snippets
 
 ```{tableofcontents}
 ```

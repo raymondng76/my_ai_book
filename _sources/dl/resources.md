@@ -1,1 +1,1 @@
-# Deep Learning Resources
+# Resources

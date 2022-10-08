@@ -1,1 +1,1 @@
-# Natural Language Processing Resources
+# Resources
