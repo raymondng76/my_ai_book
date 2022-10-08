@@ -1,0 +1,21 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+parts:
+  - caption: Python
+    chapters:
+    - file: python/online_books
+    - file: python/snippets
+      sections:
+      - glob: python/snippets/*
+  - caption: Deep Learning
+    chapters:
+    - file: dl/online_books
+  - caption: Natural Language Processing
+    chapters:
+    - file: nlp/online_books
+    - file: nlp/papers
+      sections:
+      - glob: nlp/papers/*
