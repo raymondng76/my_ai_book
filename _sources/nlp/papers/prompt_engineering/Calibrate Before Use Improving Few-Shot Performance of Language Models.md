@@ -4,8 +4,6 @@ Tony Z. Zhao, Eric Wallace, Shi Feng, Dan Klein, Sameer Singh
 [Paper](http://proceedings.mlr.press/v139/zhao21c.html)  
 [Github](https://github.com/tonyzhaozh/few-shot-learning)  
 
-Tags: [prompt_engineering, llm]
-
 ## Abstract
 
 - Shows that few-shot prompting for large language models like GPT-3 can be unstable

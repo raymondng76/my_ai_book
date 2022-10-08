@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Calibrate Before Use: Improving Few-Shot Performance of Language Models &#8212; My AI Book</title>
+    <title>Prompt Engineering &#8212; My AI Book</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -171,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Calibrate Before Use: Improving Few-Shot Performance of Language Models
+     Prompt Engineering
     </a>
    </li>
   </ul>
@@ -262,7 +262,7 @@ title="Source repository"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/nlp/papers/Calibrate Before Use Improving Few-Shot Performance of Language Models.md"
+        <a href="../../_sources/nlp/papers/prompt_engineering.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -299,94 +299,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#abstract">
-   Abstract
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#few-shot-learning">
-     Few-shot learning
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#instability">
-     Instability
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Calibrate Before Use: Improving Few-Shot Performance of Language Models</h1>
+                <h1>Prompt Engineering</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#abstract">
-   Abstract
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#few-shot-learning">
-     Few-shot learning
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#instability">
-     Instability
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -394,50 +323,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="calibrate-before-use-improving-few-shot-performance-of-language-models">
-<h1>Calibrate Before Use: Improving Few-Shot Performance of Language Models<a class="headerlink" href="#calibrate-before-use-improving-few-shot-performance-of-language-models" title="Permalink to this headline">#</a></h1>
-<p>Tony Z. Zhao, Eric Wallace, Shi Feng, Dan Klein, Sameer Singh<br />
-<a class="reference external" href="http://proceedings.mlr.press/v139/zhao21c.html">Paper</a><br />
-<a class="reference external" href="https://github.com/tonyzhaozh/few-shot-learning">Github</a></p>
-<p>Tags: [prompt_engineering, llm]</p>
-<section id="abstract">
-<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>Shows that few-shot prompting for large language models like GPT-3 can be unstable</p></li>
-<li><p>Demonstrate that this instability arises from the bias of language models towards predicting certain answers</p></li>
-<li><p>Mitigate model biases by first estimating the model’s bias towards each answer by asking for its prediction when given the training prompt and a content-free test input (e.g. “N/A”)</p></li>
-<li><p>Then fit calibration parameters that cause the prediction for this input to be uniform across answers</p></li>
-</ul>
-</section>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<section id="few-shot-learning">
-<h3>Few-shot learning<a class="headerlink" href="#few-shot-learning" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p>Ability to learn tasks with limited examples</p></li>
-<li><p>Few-shot “in-context” learning shows that model can learn without parameter updates</p></li>
-<li><p>Example:</p></li>
-</ul>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Input: Subpar acting.  Sentiment: Negative
-Input: Beautiful film. Sentiment: Positive
-Input: Amazing.        Sentiment:
-</pre></div>
-</div>
-</section>
-<section id="instability">
-<h3>Instability<a class="headerlink" href="#instability" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p>Shows GPT-3 accuracy can be highly unstable across different prompts</p></li>
-<li><p>Causes of instability:</p>
-<ul>
-<li><p>Majority label bias</p></li>
-<li><p>Recency bias</p></li>
-<li><p>Common token bias</p></li>
-</ul>
-</li>
-</ul>
-</section>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="prompt-engineering">
+<h1>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Permalink to this headline">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
